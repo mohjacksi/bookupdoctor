@@ -16,6 +16,7 @@ class Specialty extends Model implements HasMedia
     use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
 
     public $table = 'specialties';
+    protected $hidden = ['media', 'icon', 'created_at', 'updated_at', 'deleted_at'];
 
     protected $appends = [
         'icon',

@@ -17,6 +17,7 @@ class Doctor extends Model implements HasMedia
     use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
 
     public $table = 'doctors';
+    protected $hidden = ['media', 'image'];
 
     protected $appends = [
         'image',
@@ -45,7 +46,27 @@ class Doctor extends Model implements HasMedia
         'updated_at',
         'deleted_at',
     ];
+    protected $columns = [
+        'name',
+        'phone_number',
+        'about',
+        'location',
+        'stars',
+        'is_special',
+        'is_active',
+        'expiration_date',
+        'latitude',
+        'longitude',
+        'city_id',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ]; // add all columns from you table
 
+    public function scopeExclude($query, $value = [])
+    {
+        return $query->select(array_diff($this->columns, (array) $value));
+    }
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -87,7 +108,8 @@ class Doctor extends Model implements HasMedia
 
     public function days()
     {
-        return $this->belongsToMany(Day::class);
+        return $this->belongsToMany(Day::class)
+        ->withPivot(['morning', 'evening']);
     }
 
     public function getExpirationDateAttribute($value)

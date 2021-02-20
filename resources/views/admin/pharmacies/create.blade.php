@@ -56,15 +56,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="days">{{ trans('cruds.pharmacy.fields.days') }}</label>
-                <div style="padding-bottom: 4px">
-                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-                </div>
-                <select class="form-control select2 {{ $errors->has('days') ? 'is-invalid' : '' }}" name="days[]" id="days" multiple required>
-                    @foreach($days as $id => $days)
-                        <option value="{{ $id }}" {{ in_array($id, old('days', [])) ? 'selected' : '' }}>{{ $days }}</option>
-                    @endforeach
-                </select>
+                @include('admin.pharmacies.partials.days')
                 @if($errors->has('days'))
                     <div class="invalid-feedback">
                         {{ $errors->first('days') }}

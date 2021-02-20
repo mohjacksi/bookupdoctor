@@ -33,7 +33,7 @@ class UpdatePharmacyRequest extends FormRequest
                 'integer',
             ],
             'days'            => [
-                'required',
+            //    'required',
                 'array',
             ],
             'latitude'        => [

@@ -96,7 +96,7 @@ class DoctorsController extends Controller
 
         $specialties = Specialty::all()->pluck('name', 'id');
 
-        $days = Day::all()->pluck('name', 'id');
+        $days = Day::all();
 
         $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -105,9 +105,15 @@ class DoctorsController extends Controller
 
     public function store(StoreDoctorRequest $request)
     {
+
         $doctor = Doctor::create($request->all());
         $doctor->specialties()->sync($request->input('specialties', []));
-        $doctor->days()->sync($request->input('days', []));
+        //dd($request->input('days-evening', []));
+        $days_morning = $request->input('days-morning', []);
+        $days_evening = $request->input('days-evening', []);
+        //dd($this->daysMapper($days_morning,$days_evening));
+        $doctor->days()->sync($this->daysMapper($days_morning,$days_evening));
+
 
         if ($request->input('image', false)) {
             $doctor->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
@@ -126,11 +132,19 @@ class DoctorsController extends Controller
 
         $specialties = Specialty::all()->pluck('name', 'id');
 
-        $days = Day::all()->pluck('name', 'id');
 
         $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $doctor->load('specialties', 'days', 'city');
+
+        $days = Day::get()->map(function($day) use ($doctor) {
+            $morning = data_get($doctor->days->firstWhere('id', $day->id), 'pivot.morning') ?? null;
+            $evening = data_get($doctor->days->firstWhere('id', $day->id), 'pivot.evening') ?? null;
+            $day->morning = $morning;
+
+            $day->evening = $evening;
+            return $day;
+        });
 
         return view('admin.doctors.edit', compact('specialties', 'days', 'cities', 'doctor'));
     }
@@ -139,7 +153,13 @@ class DoctorsController extends Controller
     {
         $doctor->update($request->all());
         $doctor->specialties()->sync($request->input('specialties', []));
-        $doctor->days()->sync($request->input('days', []));
+
+
+        //$doctor->days()->sync($request->input('days', []));
+        $days_morning = $request->input('days-morning', []);
+        $days_evening = $request->input('days-evening', []);
+        //dd($this->daysMapper($days_morning,$days_evening));
+        $doctor->days()->sync($this->daysMapper($days_morning,$days_evening));
 
         if ($request->input('image', false)) {
             if (!$doctor->image || $request->input('image') !== $doctor->image->file_name) {
@@ -192,4 +212,14 @@ class DoctorsController extends Controller
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
+    private function daysMapper($days_morning,$days_evening)
+    {
+        //dd($days_morning);
+        return collect($days_morning)->map(function ($i,$j) use($days_evening) {
+            return ['morning' => $i,'evening'=> $days_evening[$j]];
+        });
+    }
 }
+
+
+

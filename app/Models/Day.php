@@ -14,6 +14,8 @@ class Day extends Model
 
     public $table = 'days';
 
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'id'];
+
     protected $dates = [
         'created_at',
         'updated_at',

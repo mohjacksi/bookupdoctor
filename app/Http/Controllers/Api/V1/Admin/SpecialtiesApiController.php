@@ -18,9 +18,12 @@ class SpecialtiesApiController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('specialty_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return new SpecialtyResource(Specialty::all());
+        //abort_if(Gate::denies('specialty_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $specialties = Specialty::all();
+        foreach($specialties as $specialty)
+            if ($specialty->icon != null)
+                $specialty->image_url = $specialty->icon->thumbnail;
+        return new SpecialtyResource($specialty);
     }
 
     public function store(StoreSpecialtyRequest $request)

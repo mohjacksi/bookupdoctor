@@ -11,16 +11,30 @@ use App\Models\Doctor;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use App\Models\Day;
 class DoctorsApiController extends Controller
 {
     use MediaUploadingTrait;
 
     public function index()
     {
-        abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //$doctors = Doctor::with(['specialties', 'days', 'city'])->get();
 
-        return new DoctorResource(Doctor::with(['specialties', 'days', 'city'])->get());
+        $city_id = request()->city_id;
+        $search = request()->search;
+
+        $doctors = Doctor::select(['id','name','about','is_special','stars']);
+        if(isset($city_id))
+            $doctors = $doctors->where('city_id', $city_id);
+        if(isset($search))
+            $doctors = $doctors->where('name', "like", "%" . $search . "%");
+        $doctors = $doctors->paginate(10);
+        foreach ($doctors as $doctor)
+            if ($doctor->image != null)
+                $doctor->image_url = $doctor->image->thumbnail;
+        //$doctors = $doctors->makeHidden(['media','image']);
+        return new DoctorResource($doctors);
     }
 
     public function store(StoreDoctorRequest $request)
@@ -32,17 +46,17 @@ class DoctorsApiController extends Controller
         if ($request->input('image', false)) {
             $doctor->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
         }
-
         return (new DoctorResource($doctor))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Doctor $doctor)
+    public function show($id)
     {
-        abort_if(Gate::denies('doctor_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return new DoctorResource($doctor->load(['specialties', 'days', 'city']));
+        //abort_if(Gate::denies('doctor_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $doctor = Doctor::select('id','name','about','stars','location','latitude','longitude')->find($id);
+        $doctor->load('days');
+        return new DoctorResource($doctor);
     }
 
     public function update(UpdateDoctorRequest $request, Doctor $doctor)

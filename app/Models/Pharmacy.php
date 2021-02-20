@@ -17,6 +17,7 @@ class Pharmacy extends Model implements HasMedia
     use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
 
     public $table = 'pharmacies';
+    protected $hidden = ['media', 'logo'];
 
     protected $appends = [
         'logo',
@@ -80,7 +81,8 @@ class Pharmacy extends Model implements HasMedia
 
     public function days()
     {
-        return $this->belongsToMany(Day::class);
+        return $this->belongsToMany(Day::class)
+        ->withPivot(['morning', 'evening']);
     }
 
     public function getExpirationDateAttribute($value)

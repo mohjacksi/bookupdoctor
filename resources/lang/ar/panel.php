@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'Doctors appointments',
+    'site_title' => 'إحجز طبيبك',
 ];

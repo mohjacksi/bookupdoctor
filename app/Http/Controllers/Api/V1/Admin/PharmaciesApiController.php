@@ -18,9 +18,24 @@ class PharmaciesApiController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('pharmacy_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('pharmacy_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $city_id = request()->city_id;
+        $search = request()->search;
 
-        return new PharmacyResource(Pharmacy::with(['city', 'days'])->get());
+        $pharmacies = Pharmacy::select(['id','name','is_special','location']);
+        if(isset($city_id))
+            $pharmacies = $pharmacies->where('city_id', $city_id);
+
+        if(isset($search))
+        $pharmacies = $pharmacies
+        ->where('name', "like", "%" . $search . "%");
+
+        $pharmacies = $pharmacies->paginate(10);
+        foreach ($pharmacies as $pharmacy)
+            if ($pharmacy->logo != null)
+                $pharmacy->image_url = $pharmacy->logo->thumbnail;
+
+        return new PharmacyResource($pharmacies);
     }
 
     public function store(StorePharmacyRequest $request)
@@ -37,11 +52,12 @@ class PharmaciesApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Pharmacy $pharmacy)
+    public function show($id)
     {
-        abort_if(Gate::denies('pharmacy_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return new PharmacyResource($pharmacy->load(['city', 'days']));
+        // abort_if(Gate::denies('pharmacy_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $pharmacy = Pharmacy::select('id','name','location','latitude','longitude')->find($id);
+        $pharmacy->load('days');
+        return new PharmacyResource($pharmacy);
     }
 
     public function update(UpdatePharmacyRequest $request, Pharmacy $pharmacy)

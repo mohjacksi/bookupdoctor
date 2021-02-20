@@ -32,8 +32,14 @@ class UpdateDoctorRequest extends FormRequest
             'days.*'          => [
                 'integer',
             ],
+            'days-morning.*'          => [
+                'string',
+            ],
+            'days-evening.*'          => [
+                'string',
+            ],
             'days'            => [
-                'required',
+                // 'required',
                 'array',
             ],
             'stars'           => [

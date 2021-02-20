@@ -2,7 +2,7 @@
 
 return [
     'actions'                              => 'الإجراءات',
-    'add'                                  => 'اضافه',
+    'add'                                  => 'إضافة',
     'allRightsReserved'                    => 'كافة الحقوق محفوظة',
     'areYouSure'                           => 'هل أنت متأكد؟',
     'clickHereToVerify'                    => 'انقر هنا للتحقق',

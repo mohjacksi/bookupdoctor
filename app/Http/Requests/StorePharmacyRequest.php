@@ -33,7 +33,7 @@ class StorePharmacyRequest extends FormRequest
                 'integer',
             ],
             'days'            => [
-                'required',
+            //    'required',
                 'array',
             ],
             'latitude'        => [

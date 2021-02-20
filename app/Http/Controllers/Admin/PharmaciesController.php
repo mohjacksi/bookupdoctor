@@ -84,7 +84,7 @@ class PharmaciesController extends Controller
 
         $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $days = Day::all()->pluck('name', 'id');
+        $days = Day::all();
 
         return view('admin.pharmacies.create', compact('cities', 'days'));
     }
@@ -92,7 +92,10 @@ class PharmaciesController extends Controller
     public function store(StorePharmacyRequest $request)
     {
         $pharmacy = Pharmacy::create($request->all());
-        $pharmacy->days()->sync($request->input('days', []));
+        $days_morning = $request->input('days-morning', []);
+        $days_evening = $request->input('days-evening', []);
+        //dd($this->daysMapper($days_morning,$days_evening));
+        $pharmacy->days()->sync($this->daysMapper($days_morning,$days_evening));
 
         if ($request->input('logo', false)) {
             $pharmacy->addMedia(storage_path('tmp/uploads/' . $request->input('logo')))->toMediaCollection('logo');
@@ -111,17 +114,28 @@ class PharmaciesController extends Controller
 
         $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $days = Day::all()->pluck('name', 'id');
 
         $pharmacy->load('city', 'days');
 
+        $days = Day::get()->map(function($day) use ($pharmacy) {
+            $morning = data_get($pharmacy->days->firstWhere('id', $day->id), 'pivot.morning') ?? null;
+            $evening = data_get($pharmacy->days->firstWhere('id', $day->id), 'pivot.evening') ?? null;
+            $day->morning = $morning;
+            $day->evening = $evening;
+            return $day;
+        });
+        //dd($days);
         return view('admin.pharmacies.edit', compact('cities', 'days', 'pharmacy'));
     }
 
     public function update(UpdatePharmacyRequest $request, Pharmacy $pharmacy)
     {
         $pharmacy->update($request->all());
-        $pharmacy->days()->sync($request->input('days', []));
+
+        $days_morning = $request->input('days-morning', []);
+        $days_evening = $request->input('days-evening', []);
+        $pharmacy
+        ->days()->sync($this->daysMapper($days_morning,$days_evening));
 
         if ($request->input('logo', false)) {
             if (!$pharmacy->logo || $request->input('logo') !== $pharmacy->logo->file_name) {
@@ -173,5 +187,12 @@ class PharmaciesController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+    private function daysMapper($days_morning,$days_evening)
+    {
+        //dd($days_morning);
+        return collect($days_morning)->map(function ($i,$j) use($days_evening) {
+            return ['morning' => $i,'evening'=> $days_evening[$j]];
+        });
     }
 }
