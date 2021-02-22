@@ -19,6 +19,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
+    <style>
+        body{
+            background-image: url({{ asset('bg.jpg') }})!important;
+            background-size: 100% auto;
+        }
+        .c-app {
+            background-color: rgba(0, 0, 0, 0) !important;
+        }
+    </style>
 </head>
 
 <body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden login-page">
