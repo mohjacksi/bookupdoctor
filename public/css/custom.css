@@ -12,10 +12,6 @@
 .c-sidebar .c-active.c-sidebar-nav-dropdown-toggle, .c-sidebar .c-sidebar-nav-link.c-active{
     background-color: #6c4977;
     font-weight: bold;
-    font-size:12px;
-
-
-
 }
 
 .btn-primary {
@@ -53,9 +49,6 @@ div.dataTables_wrapper div.dataTables_length select {
     color: #7b72c9;
     background-color: #fff;
     border-color: #d8dbe0;
-}
-select {
-    font-size:8px;
 }
 a,
 p,
