@@ -124,6 +124,6 @@ class Doctor extends Model implements HasMedia
 
     public function city()
     {
-        return $this->belongsTo(Cite::class, 'city_id');
+        return $this->belongsTo(City::class, 'city_id');
     }
 }

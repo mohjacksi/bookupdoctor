@@ -122,9 +122,9 @@
                                             {{ trans('cruds.specialty.title') }}
                                         </a>
                                     @endcan
-                                    @can('cite_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.cites.index') }}">
-                                            {{ trans('cruds.cite.title') }}
+                                    @can('city_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.cities.index') }}">
+                                            {{ trans('cruds.city.title') }}
                                         </a>
                                     @endcan
                                     @can('setting_access')

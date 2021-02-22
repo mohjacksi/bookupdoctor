@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Cite;
+use App\Models\City;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class MassDestroyCiteRequest extends FormRequest
+class MassDestroyCityRequest extends FormRequest
 {
     public function authorize()
     {
-        abort_if(Gate::denies('cite_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('city_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -20,7 +20,7 @@ class MassDestroyCiteRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:cites,id',
+            'ids.*' => 'exists:cities,id',
         ];
     }
 }

@@ -27,9 +27,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('specialties/ckmedia', 'SpecialtiesController@storeCKEditorImages')->name('specialties.storeCKEditorImages');
     Route::resource('specialties', 'SpecialtiesController');
 
-    // Cites
-    Route::delete('cites/destroy', 'CitesController@massDestroy')->name('cites.massDestroy');
-    Route::resource('cites', 'CitesController');
+    // Cities
+    Route::delete('cities/destroy', 'CitiesController@massDestroy')->name('cities.massDestroy');
+    Route::resource('cities', 'CitiesController');
 
     // Settings
     Route::delete('settings/destroy', 'SettingsController@massDestroy')->name('settings.massDestroy');
@@ -104,9 +104,9 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::post('specialties/ckmedia', 'SpecialtiesController@storeCKEditorImages')->name('specialties.storeCKEditorImages');
     Route::resource('specialties', 'SpecialtiesController');
 
-    // Cites
-    Route::delete('cites/destroy', 'CitesController@massDestroy')->name('cites.massDestroy');
-    Route::resource('cites', 'CitesController');
+    // Cities
+    Route::delete('cities/destroy', 'CitiesController@massDestroy')->name('cities.massDestroy');
+    Route::resource('cities', 'CitiesController');
 
     // Settings
     Route::delete('settings/destroy', 'SettingsController@massDestroy')->name('settings.massDestroy');

@@ -14,7 +14,17 @@ class DatabaseSeeder extends Seeder
             PermissionRoleTableSeeder::class,
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
-            DaysUserTableSeeder::class,
+
+
+            DaysTableSeeder::class,
+            SpecialtiesTableSeeder::class,
+            CitiesTableSeeder::class,
+            AppointmentsStatusesTableSeeder::class,
+            SettingsTableSeeder::class,
+            PharmacyTableSeeder::class,
+            DoctorsTableSeeder::class,
+            DoctorSpecialtyTableSeeder::class,
+            DayDoctorTableSeeder::class,
         ]);
     }
 }

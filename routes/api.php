@@ -17,8 +17,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin'], 
     Route::post('specialties/media', 'SpecialtiesApiController@storeMedia')->name('specialties.storeMedia');
     Route::apiResource('specialties', 'SpecialtiesApiController');
 
-    // Cites
-    Route::apiResource('cites', 'CitesApiController');
+    // Cities
+    Route::apiResource('cities', 'CitiesApiController');
 
     // Settings
     Route::apiResource('settings', 'SettingsApiController');

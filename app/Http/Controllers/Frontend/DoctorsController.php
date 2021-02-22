@@ -7,7 +7,7 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyDoctorRequest;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
-use App\Models\Cite;
+use App\Models\City;
 use App\Models\Day;
 use App\Models\Doctor;
 use App\Models\Specialty;
@@ -30,9 +30,9 @@ class DoctorsController extends Controller
 
         $days = Day::get();
 
-        $cites = Cite::get();
+        $cities = City::get();
 
-        return view('frontend.doctors.index', compact('doctors', 'specialties', 'days', 'cites'));
+        return view('frontend.doctors.index', compact('doctors', 'specialties', 'days', 'cities'));
     }
 
     public function create()
@@ -43,7 +43,7 @@ class DoctorsController extends Controller
 
         $days = Day::all()->pluck('name', 'id');
 
-        $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('frontend.doctors.create', compact('specialties', 'days', 'cities'));
     }
@@ -73,7 +73,7 @@ class DoctorsController extends Controller
 
         $days = Day::all()->pluck('name', 'id');
 
-        $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $doctor->load('specialties', 'days', 'city');
 

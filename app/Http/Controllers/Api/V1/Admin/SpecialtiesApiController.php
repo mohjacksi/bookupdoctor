@@ -23,7 +23,7 @@ class SpecialtiesApiController extends Controller
         foreach($specialties as $specialty)
             if ($specialty->icon != null)
                 $specialty->image_url = $specialty->icon->thumbnail;
-        return new SpecialtyResource($specialty);
+        return new SpecialtyResource($specialties);
     }
 
     public function store(StoreSpecialtyRequest $request)

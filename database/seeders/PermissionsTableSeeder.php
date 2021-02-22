@@ -120,23 +120,23 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 28,
-                'title' => 'cite_create',
+                'title' => 'city_create',
             ],
             [
                 'id'    => 29,
-                'title' => 'cite_edit',
+                'title' => 'city_edit',
             ],
             [
                 'id'    => 30,
-                'title' => 'cite_show',
+                'title' => 'city_show',
             ],
             [
                 'id'    => 31,
-                'title' => 'cite_delete',
+                'title' => 'city_delete',
             ],
             [
                 'id'    => 32,
-                'title' => 'cite_access',
+                'title' => 'city_access',
             ],
             [
                 'id'    => 33,

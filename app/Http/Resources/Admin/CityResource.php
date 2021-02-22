@@ -4,7 +4,7 @@ namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CiteResource extends JsonResource
+class CityResource extends JsonResource
 {
     public function toArray($request)
     {

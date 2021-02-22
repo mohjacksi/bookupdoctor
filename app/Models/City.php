@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
-class Cite extends Model
+class City extends Model
 {
     use SoftDeletes, Auditable, HasFactory;
 
-    public $table = 'cites';
+    public $table = 'cities';
 
     protected $dates = [
         'created_at',

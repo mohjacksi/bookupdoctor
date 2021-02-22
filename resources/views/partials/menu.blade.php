@@ -78,7 +78,7 @@
             </li>
         @endcan
         @can('option_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/days*") ? "c-show" : "" }} {{ request()->is("admin/specialties*") ? "c-show" : "" }} {{ request()->is("admin/cites*") ? "c-show" : "" }} {{ request()->is("admin/settings*") ? "c-show" : "" }} {{ request()->is("admin/appointments-statuses*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/days*") ? "c-show" : "" }} {{ request()->is("admin/specialties*") ? "c-show" : "" }} {{ request()->is("admin/cities*") ? "c-show" : "" }} {{ request()->is("admin/settings*") ? "c-show" : "" }} {{ request()->is("admin/appointments-statuses*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
 
@@ -106,13 +106,13 @@
                             </a>
                         </li>
                     @endcan
-                    @can('cite_access')
+                    @can('city_access')
                         <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.cites.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/cites") || request()->is("admin/cites/*") ? "c-active" : "" }}">
+                            <a href="{{ route("admin.cities.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/cities") || request()->is("admin/cities/*") ? "c-active" : "" }}">
                                 <i class="fa-fw fas fa-map-marker-alt c-sidebar-nav-icon">
 
                                 </i>
-                                {{ trans('cruds.cite.title') }}
+                                {{ trans('cruds.city.title') }}
                             </a>
                         </li>
                     @endcan

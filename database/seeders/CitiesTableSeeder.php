@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cite;
+use App\Models\City;
 use Illuminate\Database\Seeder;
 
 class CitiesTableSeeder extends Seeder
@@ -15,7 +15,7 @@ class CitiesTableSeeder extends Seeder
     public function run()
     {
         $cities = [
-            // ['id' => 1, 'name' => 'بغداد',],
+            ['id' => 1, 'name' => 'بغداد',],
             ['id' => 2, 'name' => 'البصرة',],
             ['id' => 3, 'name' => 'نينوى',],
             ['id' => 4, 'name' => 'أربيل',],
@@ -35,6 +35,6 @@ class CitiesTableSeeder extends Seeder
             ['id' => 18, 'name' => 'بابل',],
             ['id' => 19, 'name' => 'كربلاء',],
         ];
-        Cite::insert($cities);
+        City::insert($cities);
     }
 }

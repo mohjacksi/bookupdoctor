@@ -6,13 +6,13 @@
 
             <div class="card">
                 <div class="card-header">
-                    {{ trans('global.show') }} {{ trans('cruds.cite.title') }}
+                    {{ trans('global.show') }} {{ trans('cruds.city.title') }}
                 </div>
 
                 <div class="card-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <a class="btn btn-default" href="{{ route('frontend.cites.index') }}">
+                            <a class="btn btn-default" href="{{ route('frontend.cities.index') }}">
                                 {{ trans('global.back_to_list') }}
                             </a>
                         </div>
@@ -20,24 +20,24 @@
                             <tbody>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.cite.fields.id') }}
+                                        {{ trans('cruds.city.fields.id') }}
                                     </th>
                                     <td>
-                                        {{ $cite->id }}
+                                        {{ $city->id }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.cite.fields.name') }}
+                                        {{ trans('cruds.city.fields.name') }}
                                     </th>
                                     <td>
-                                        {{ $cite->name }}
+                                        {{ $city->name }}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="form-group">
-                            <a class="btn btn-default" href="{{ route('frontend.cites.index') }}">
+                            <a class="btn btn-default" href="{{ route('frontend.cities.index') }}">
                                 {{ trans('global.back_to_list') }}
                             </a>
                         </div>

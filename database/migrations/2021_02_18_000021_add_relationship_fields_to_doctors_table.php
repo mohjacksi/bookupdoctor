@@ -10,7 +10,7 @@ class AddRelationshipFieldsToDoctorsTable extends Migration
     {
         Schema::table('doctors', function (Blueprint $table) {
             $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id', 'city_fk_3188812')->references('id')->on('cites');
+            $table->foreign('city_id', 'city_fk_3188812')->references('id')->on('cities');
         });
     }
 }

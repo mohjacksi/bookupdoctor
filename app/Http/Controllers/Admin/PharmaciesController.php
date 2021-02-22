@@ -7,7 +7,7 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyPharmacyRequest;
 use App\Http\Requests\StorePharmacyRequest;
 use App\Http\Requests\UpdatePharmacyRequest;
-use App\Models\Cite;
+use App\Models\City;
 use App\Models\Day;
 use App\Models\Pharmacy;
 use Gate;
@@ -72,17 +72,17 @@ class PharmaciesController extends Controller
             return $table->make(true);
         }
 
-        $cites = Cite::get();
+        $cities = City::get();
         $days  = Day::get();
 
-        return view('admin.pharmacies.index', compact('cites', 'days'));
+        return view('admin.pharmacies.index', compact('cities', 'days'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('pharmacy_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $days = Day::all();
 
@@ -112,7 +112,7 @@ class PharmaciesController extends Controller
     {
         abort_if(Gate::denies('pharmacy_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
 
         $pharmacy->load('city', 'days');

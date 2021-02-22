@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Cite;
+use App\Models\City;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class StoreCiteRequest extends FormRequest
+class StoreCityRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('cite_create');
+        return Gate::allows('city_create');
     }
 
     public function rules()

@@ -7,7 +7,7 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyDoctorRequest;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
-use App\Models\Cite;
+use App\Models\City;
 use App\Models\Day;
 use App\Models\Doctor;
 use App\Models\Specialty;
@@ -85,9 +85,9 @@ class DoctorsController extends Controller
 
         $specialties = Specialty::get();
         $days        = Day::get();
-        $cites       = Cite::get();
+        $cities       = City::get();
 
-        return view('admin.doctors.index', compact('specialties', 'days', 'cites'));
+        return view('admin.doctors.index', compact('specialties', 'days', 'cities'));
     }
 
     public function create()
@@ -98,7 +98,7 @@ class DoctorsController extends Controller
 
         $days = Day::all();
 
-        $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.doctors.create', compact('specialties', 'days', 'cities'));
     }
@@ -111,7 +111,7 @@ class DoctorsController extends Controller
         //dd($request->input('days-evening', []));
         $days_morning = $request->input('days-morning', []);
         $days_evening = $request->input('days-evening', []);
-        //dd($this->daysMapper($days_morning,$days_evening));
+        dd($days_evening );
         $doctor->days()->sync($this->daysMapper($days_morning,$days_evening));
 
 
@@ -133,7 +133,7 @@ class DoctorsController extends Controller
         $specialties = Specialty::all()->pluck('name', 'id');
 
 
-        $cities = Cite::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $doctor->load('specialties', 'days', 'city');
 

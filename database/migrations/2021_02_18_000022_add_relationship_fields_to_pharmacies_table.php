@@ -10,7 +10,7 @@ class AddRelationshipFieldsToPharmaciesTable extends Migration
     {
         Schema::table('pharmacies', function (Blueprint $table) {
             $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id', 'city_fk_3188608')->references('id')->on('cites');
+            $table->foreign('city_id', 'city_fk_3188608')->references('id')->on('cities');
         });
     }
 }

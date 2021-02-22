@@ -3,13 +3,13 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.cite.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.city.title') }}
     </div>
 
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.cites.index') }}">
+                <a class="btn btn-default" href="{{ route('admin.cities.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -17,24 +17,24 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.cite.fields.id') }}
+                            {{ trans('cruds.city.fields.id') }}
                         </th>
                         <td>
-                            {{ $cite->id }}
+                            {{ $city->id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.cite.fields.name') }}
+                            {{ trans('cruds.city.fields.name') }}
                         </th>
                         <td>
-                            {{ $cite->name }}
+                            {{ $city->name }}
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.cites.index') }}">
+                <a class="btn btn-default" href="{{ route('admin.cities.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -60,10 +60,10 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="city_pharmacies">
-            @includeIf('admin.cites.relationships.cityPharmacies', ['pharmacies' => $cite->cityPharmacies])
+            @includeIf('admin.cities.relationships.cityPharmacies', ['pharmacies' => $city->cityPharmacies])
         </div>
         <div class="tab-pane" role="tabpanel" id="city_doctors">
-            @includeIf('admin.cites.relationships.cityDoctors', ['doctors' => $cite->cityDoctors])
+            @includeIf('admin.cities.relationships.cityDoctors', ['doctors' => $city->cityDoctors])
         </div>
     </div>
 </div>

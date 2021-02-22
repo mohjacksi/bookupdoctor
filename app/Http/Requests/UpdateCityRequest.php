@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Cite;
+use App\Models\City;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class UpdateCiteRequest extends FormRequest
+class UpdateCityRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('cite_edit');
+        return Gate::allows('city_edit');
     }
 
     public function rules()
