@@ -1,5 +1,13 @@
 <?php
 
+Route::get('cache-clear', function () {
+    Artisan::call('view:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    dd('cache cleared done');
+});
+
 Route::view('/', 'welcome');
 Auth::routes(['register' => false]);
 
