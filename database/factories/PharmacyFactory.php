@@ -26,6 +26,7 @@ class PharmacyFactory extends Factory
             'name' => $this->faker->name,
             'phone_number' => $this->faker->unique()->safeEmail,
             'location'    => Str::random(10),
+            'notes'    => Str::random(10),
             'latitude' =>  $this->faker->randomElement([3, 4, 5]),
             'longitude' =>  $this->faker->randomElement([3, 4, 5]),
             'is_active' =>  $this->faker->randomElement([0, 1]),

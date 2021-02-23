@@ -57,6 +57,15 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.doctor.fields.notes') }}
+                        </th>
+                        <td>
+                            {{ $doctor->notes }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
                             {{ trans('cruds.doctor.fields.specialties') }}
                         </th>
                         <td>

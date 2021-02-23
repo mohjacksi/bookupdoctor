@@ -25,6 +25,10 @@
                         {{ trans('cruds.doctor.fields.id') }}
                     </th>
                     <th>
+                        &nbsp;
+                    </th>
+
+                    <th>
                         {{ trans('cruds.doctor.fields.name') }}
                     </th>
                     <th>
@@ -44,9 +48,6 @@
                     </th>
                     <th>
                         {{ trans('cruds.doctor.fields.city') }}
-                    </th>
-                    <th>
-                        &nbsp;
                     </th>
                 </tr>
                 <tr>
@@ -139,15 +140,15 @@
     ajax: "{{ route('admin.doctors.index') }}",
     columns: [
       { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'name', name: 'name' },
-{ data: 'phone_number', name: 'phone_number' },
-{ data: 'specialties', name: 'specialties.name' },
-{ data: 'stars', name: 'stars' },
-{ data: 'is_special', name: 'is_special' },
-{ data: 'is_active', name: 'is_active' },
-{ data: 'city_name', name: 'city.name' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
+    { data: 'id', name: 'id' },
+    { data: 'actions', name: '{{ trans('global.actions') }}' },
+    { data: 'name', name: 'name' },
+    { data: 'phone_number', name: 'phone_number' },
+    { data: 'specialties', name: 'specialties.name' },
+    { data: 'stars', name: 'stars' },
+    { data: 'is_special', name: 'is_special' },
+    { data: 'is_active', name: 'is_active' },
+    { data: 'city_name', name: 'city.name' }
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],

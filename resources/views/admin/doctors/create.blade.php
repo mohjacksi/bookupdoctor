@@ -50,6 +50,17 @@
                 <span class="help-block">{{ trans('cruds.doctor.fields.location_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="notes">{{ trans('cruds.doctor.fields.notes') }}</label>
+                <input class="form-control {{ $errors->has('notes') ? 'is-invalid' : '' }}" type="text" name="notes" id="notes" value="{{ old('notes', '') }}" required>
+                @if($errors->has('notes'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('notes') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.doctor.fields.notes_helper') }}</span>
+            </div>
+
+            <div class="form-group">
                 <label class="required" for="specialties">{{ trans('cruds.doctor.fields.specialties') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>

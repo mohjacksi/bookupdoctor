@@ -12,6 +12,7 @@ class CreatePharmaciesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('location');
+            $table->string('notes')->nullable();
             $table->float('longitude', 8, 5);
             $table->float('latitude', 8, 5);
             $table->boolean('is_special')->default(0)->nullable();

@@ -41,6 +41,17 @@
                 <span class="help-block">{{ trans('cruds.pharmacy.fields.location_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="notes">{{ trans('cruds.pharmacy.fields.notes') }}</label>
+                <input class="form-control {{ $errors->has('notes') ? 'is-invalid' : '' }}" type="text" name="notes" id="notes" value="{{ old('notes', '') }}" required>
+                @if($errors->has('notes'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('notes') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.pharmacy.fields.notes_helper') }}</span>
+            </div>
+
+            <div class="form-group">
                 <label class="required" for="city_id">{{ trans('cruds.pharmacy.fields.city') }}</label>
                 <select class="form-control select2 {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city_id" id="city_id" required>
                     @foreach($cities as $id => $city)

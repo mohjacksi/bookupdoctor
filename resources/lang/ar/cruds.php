@@ -145,7 +145,7 @@ return [
     ],
     'pharmacy'           => [
         'title'          => 'صيدليات',
-        'title_singular' => 'دفعة',
+        'title_singular' => 'صيدلية',
         'fields'         => [
             'id'                     => 'ID',
             'id_helper'              => ' ',
@@ -155,6 +155,8 @@ return [
             'logo_helper'            => ' ',
             'location'               => 'موقع',
             'location_helper'        => ' ',
+            'notes'               => 'ملاحظات',
+            'notes_helper'        => ' ',
             'city'                   => 'مدينة',
             'city_helper'            => ' ',
             'longitude'              => 'خط الطول',
@@ -189,6 +191,8 @@ return [
             'name_helper'            => ' ',
             'location'               => 'موقع',
             'location_helper'        => ' ',
+            'notes'               => 'ملاحظات',
+            'notes_helper'        => ' ',
             'image'                  => 'صورة',
             'image_helper'           => ' ',
             'days'                   => 'أيام',

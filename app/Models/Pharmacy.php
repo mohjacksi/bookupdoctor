@@ -33,6 +33,7 @@ class Pharmacy extends Model implements HasMedia
     protected $fillable = [
         'name',
         'location',
+        'notes',
         'city_id',
         'latitude',
         'longitude',

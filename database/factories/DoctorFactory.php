@@ -24,9 +24,10 @@ class DoctorFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'phone_number' => $this->faker->unique()->safeEmail,
+            'phone_number' => $this->faker->phoneNumber,
             'about'    => Str::random(10),
             'location'    => Str::random(10),
+            'notes'    => Str::random(10),
             'stars' =>  $this->faker->randomElement([3, 4, 5]),
             'latitude' =>  $this->faker->randomElement([3, 4, 5]),
             'longitude' =>  $this->faker->randomElement([3, 4, 5]),

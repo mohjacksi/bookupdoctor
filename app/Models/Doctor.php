@@ -34,6 +34,7 @@ class Doctor extends Model implements HasMedia
         'name',
         'phone_number',
         'about',
+        'notes',
         'location',
         'stars',
         'is_special',

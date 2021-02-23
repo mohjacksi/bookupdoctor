@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    مرحباً بك
                 </div>
 
                 <div class="card-body">
@@ -15,7 +15,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    أهلاً بك في نظام حجوزات الأطباء
                 </div>
             </div>
         </div>

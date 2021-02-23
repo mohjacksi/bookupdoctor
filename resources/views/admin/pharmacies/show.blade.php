@@ -53,6 +53,15 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.pharmacy.fields.notes') }}
+                        </th>
+                        <td>
+                            {{ $pharmacy->notes }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
                             {{ trans('cruds.pharmacy.fields.city') }}
                         </th>
                         <td>

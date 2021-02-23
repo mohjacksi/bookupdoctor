@@ -37,12 +37,13 @@ class DoctorsController extends Controller
                 $editGate      = 'doctor_edit';
                 $deleteGate    = 'doctor_delete';
                 $crudRoutePart = 'doctors';
-
+                $phone = $row->phone_number;
                 return view('partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',
                     'crudRoutePart',
+                    'phone',
                     'row'
                 ));
             });
@@ -111,7 +112,7 @@ class DoctorsController extends Controller
         //dd($request->input('days-evening', []));
         $days_morning = $request->input('days-morning', []);
         $days_evening = $request->input('days-evening', []);
-        dd($days_evening );
+        // dd($days_evening );
         $doctor->days()->sync($this->daysMapper($days_morning,$days_evening));
 
 

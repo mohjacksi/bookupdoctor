@@ -12,6 +12,7 @@ class CreateDoctorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('location');
+            $table->string('notes')->nullable();
             $table->float('stars')->nullable();
             $table->boolean('is_special')->default(0)->nullable();
             $table->boolean('is_active')->default(0)->nullable();
