@@ -15,9 +15,9 @@ class CitiesApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('city_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('city_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CityResource(City::all());
+        return new CityResource(City::select(['id','name'])->get());
     }
 
     public function store(StoreCityRequest $request)
