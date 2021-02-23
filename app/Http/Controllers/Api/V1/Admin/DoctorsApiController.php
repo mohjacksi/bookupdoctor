@@ -23,12 +23,18 @@ class DoctorsApiController extends Controller
 
         $city_id = request()->city_id;
         $search = request()->search;
+        $specialty_id = request()->specialty_id;
 
         $doctors = Doctor::select(['id','name','about','is_special','stars']);
         if(isset($city_id))
             $doctors = $doctors->where('city_id', $city_id);
         if(isset($search))
             $doctors = $doctors->where('name', "like", "%" . $search . "%");
+        if(isset($specialty_id))
+            $doctors = $doctors->whereHas('specialties', function ($query) use($specialty_id){
+                return $query->where('specialty_id', $specialty_id);
+            });
+            //->with('specialties')->where('specialty_id', $specialty_id);
         $doctors = $doctors->paginate(10);
         foreach ($doctors as $doctor)
             if ($doctor->image != null)
