@@ -10,7 +10,7 @@ Route::get('cache-clear', function () {
     dd('cache cleared done');
 });
 
-Route::view('/', 'welcome');
+Route::view('/', 'admin');
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
