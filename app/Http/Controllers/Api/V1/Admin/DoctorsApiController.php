@@ -60,7 +60,7 @@ class DoctorsApiController extends Controller
     public function show($id)
     {
         //abort_if(Gate::denies('doctor_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $doctor = Doctor::select('id','name','about','stars','location','latitude','longitude')->find($id);
+        $doctor = Doctor::select('id','name','about','stars','location','latitude','longitude', 'notes')->find($id);
         $doctor->load('days');
         return new DoctorResource($doctor);
     }
