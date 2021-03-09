@@ -55,7 +55,7 @@ class PharmaciesApiController extends Controller
     public function show($id)
     {
         // abort_if(Gate::denies('pharmacy_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $pharmacy = Pharmacy::select('id','name','location','latitude','longitude', 'notes')->find($id);
+        $pharmacy = Pharmacy::select('id','name','location','latitude','longitude', 'notes','phone_number')->find($id);
         $pharmacy->load('days');
         return new PharmacyResource($pharmacy);
     }
