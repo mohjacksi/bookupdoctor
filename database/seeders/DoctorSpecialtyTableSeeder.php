@@ -14,10 +14,11 @@ class DoctorSpecialtyTableSeeder extends Seeder
      */
     public function run()
     {
+        $num_of_specialites = 2;
         for ($i = 1; $i <= 100; $i++) {
-            Doctor::findOrFail($i)->specialties()->sync($i % 14 + 1);
-            Doctor::findOrFail($i)->specialties()->sync(($i+2) % 14 + 1);
-            Doctor::findOrFail($i)->specialties()->sync(($i+8) % 14 + 1);
+            Doctor::findOrFail($i)->specialties()->sync($i % $num_of_specialites + 1);
+            Doctor::findOrFail($i)->specialties()->sync(($i+2) % $num_of_specialites + 1);
+            Doctor::findOrFail($i)->specialties()->sync(($i+8) % $num_of_specialites + 1);
         }
     }
 }

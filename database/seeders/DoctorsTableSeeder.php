@@ -15,7 +15,7 @@ class DoctorsTableSeeder extends Seeder
     public function run()
     {
         //
-        Doctor::factory()->count(100000)->create();
+        Doctor::factory()->count(10000)->create();
 
     }
 }
