@@ -16,6 +16,7 @@ class Portfolio extends Model implements HasMedia
     use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
 
     public $table = 'portfolios';
+    protected $hidden = ['media', 'images', 'created_at', 'updated_at', 'deleted_at', 'doctor_id'];
 
     protected $appends = [
         'images',

@@ -76,7 +76,6 @@ class DoctorsApiController extends Controller
                 if ($doctor->image) {
                     $doctor->image->delete();
                 }
-
                 $doctor->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
             }
         } elseif ($doctor->image) {

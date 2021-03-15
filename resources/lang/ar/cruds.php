@@ -11,7 +11,7 @@ return [
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
-            'title'             => 'لقب',
+            'title'             => 'عنوان',
             'title_helper'      => ' ',
             'created_at'        => 'انشئ في',
             'created_at_helper' => ' ',
@@ -279,7 +279,7 @@ return [
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => ' ',
-            'title'              => 'لقب',
+            'title'              => 'عنوان',
             'title_helper'       => ' ',
             'desecration'        => 'وصف',
             'desecration_helper' => ' ',

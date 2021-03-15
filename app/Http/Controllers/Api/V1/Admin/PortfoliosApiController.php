@@ -36,12 +36,33 @@ class PortfoliosApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Portfolio $portfolio)
-    {
-        abort_if(Gate::denies('portfolio_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    // public function show($id)
+    // {
+    //     //abort_if(Gate::denies('portfolio_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    //     $portfolio = Portfolio::where('id', $id)->get()->first();
+    //     $images_url = [];
+    //     foreach ($portfolio->images as $images) {
+    //         $images_url[] = $images->url;
+    //     }
+    //     $portfolio->images_url = $images_url;
 
-        return new PortfolioResource($portfolio->load(['doctor']));
+    //     return new PortfolioResource($portfolio);
+    // }
+
+    public function show($doctor_id)
+    {
+        //abort_if(Gate::denies('portfolio_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $portfolios = Portfolio::where('doctor_id', $doctor_id)->get();
+        foreach ($portfolios as $portfolio) {
+            $images_url = [];
+            foreach ($portfolio->images as $images) {
+                $images_url[] = $images->url;
+            }
+            $portfolio->images_url = $images_url;
+        }
+        return new PortfolioResource($portfolios);
     }
+
 
     public function update(UpdatePortfolioRequest $request, Portfolio $portfolio)
     {
