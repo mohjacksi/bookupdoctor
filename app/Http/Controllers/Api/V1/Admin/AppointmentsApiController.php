@@ -23,8 +23,12 @@ class AppointmentsApiController extends Controller
         return new AppointmentResource(Appointment::with(['status'])->get());
     }
 
-    public function store(StoreAppointmentRequest $request)
+    public function store(Request $request)
     {
+        if($request->key != "DEE4BDA736F6DB139D77348939374"){
+            return new response('Not found', 404);
+        }
+        $request['status_id'] = 1;
         $appointment = Appointment::create($request->all());
 
         if ($request->input('voice', false)) {

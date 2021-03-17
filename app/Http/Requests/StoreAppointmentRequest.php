@@ -11,7 +11,8 @@ class StoreAppointmentRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('appointment_create');
+        return true;
+        // return Gate::allows('appointment_create');
     }
 
     public function rules()
