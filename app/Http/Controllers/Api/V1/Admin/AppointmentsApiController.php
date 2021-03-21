@@ -48,9 +48,10 @@ class AppointmentsApiController extends Controller
             $voice->move($path, $name);
 
             $appointment->addMedia(storage_path('tmp/uploads/' . $name))->toMediaCollection('voice');
+            $appointment->voice_path = storage_path('tmp/uploads/' . $name);
         }
 
-        if ($request->input( 'voice', false)) {
+        if ($request->input('voice', false)) {
             $appointment->addMedia(storage_path('tmp/uploads/' . $request->input('voice')))->toMediaCollection('voice');
         }
 
