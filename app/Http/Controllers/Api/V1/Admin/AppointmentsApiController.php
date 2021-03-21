@@ -31,7 +31,26 @@ class AppointmentsApiController extends Controller
         $request['status_id'] = 1;
         $appointment = Appointment::create($request->all());
 
-        if ($request->input('voice', false)) {
+        $path = storage_path('tmp/uploads');
+        try {
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+        } catch (\Exception $e) {
+
+        }
+
+        if ($request->hasFile('voice')) {
+            $voice = $request->file('voice');
+
+            $name = uniqid() . '_' . trim($voice->getClientOriginalName());
+
+            $voice->move($path, $name);
+
+            $appointment->addMedia(storage_path('tmp/uploads/' . $name))->toMediaCollection('voice');
+        }
+
+        if ($request->input( 'voice', false)) {
             $appointment->addMedia(storage_path('tmp/uploads/' . $request->input('voice')))->toMediaCollection('voice');
         }
 
