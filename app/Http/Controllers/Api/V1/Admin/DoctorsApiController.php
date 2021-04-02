@@ -25,7 +25,7 @@ class DoctorsApiController extends Controller
         $search = request()->search;
         $specialty_id = request()->specialty_id;
 
-        $doctors = Doctor::select(['id','name','about','is_special','stars']);
+        $doctors = Doctor::select(['id','name','notes','is_special','stars']);
         if(isset($city_id))
             $doctors = $doctors->where('city_id', $city_id);
         if(isset($search))

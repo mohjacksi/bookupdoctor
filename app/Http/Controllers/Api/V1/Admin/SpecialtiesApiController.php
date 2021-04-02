@@ -20,9 +20,15 @@ class SpecialtiesApiController extends Controller
     {
         //abort_if(Gate::denies('specialty_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $specialties = Specialty::all();
-        foreach($specialties as $specialty)
+        // $specialties = Specialty::withCount('specialtiesDoctors')->get();
+        foreach($specialties as $i => $specialty){
             if ($specialty->icon != null)
                 $specialty->image_url = $specialty->icon->thumbnail;
+            // if($specialty->specialties_doctors_count == 0)
+            //     $specialties[$i] = null;
+        }
+        // dd($specialties);
+
         return new SpecialtyResource($specialties);
     }
 
