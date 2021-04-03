@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="notes">{{ trans('cruds.pharmacy.fields.notes') }}</label>
-                <input class="form-control {{ $errors->has('notes') ? 'is-invalid' : '' }}" type="text" name="notes" id="notes" value="{{ old('notes', '') }}" required>
+                <textarea class="form-control {{ $errors->has('notes') ? 'is-invalid' : '' }}" name="notes" id="notes"></textarea>
                 @if($errors->has('notes'))
                     <div class="invalid-feedback">
                         {{ $errors->first('notes') }}
@@ -65,7 +65,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.pharmacy.fields.city_helper') }}</span>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label class="required" for="days">{{ trans('cruds.pharmacy.fields.days') }}</label>
                 @include('admin.pharmacies.partials.days')
                 @if($errors->has('days'))
@@ -74,7 +74,20 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.pharmacy.fields.days_helper') }}</span>
+            </div> --}}
+            <div class="form-group">
+                <label for="address_address">البحث عن عنوان (لا يتم تخزينه)</label>
+                <input type="text" id="address-input" name="address_address" class="form-control map-input">
+                <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
             </div>
+            <div class="form-group">
+                <div id="address-map-container" style="width:100%;height:400px; ">
+                    <div style="width: 100%; height: 100%" id="address-map">
+                    </div>
+                </div>
+            </div>
+            
             <div class="form-group">
                 <label class="required" for="latitude">{{ trans('cruds.pharmacy.fields.latitude') }}</label>
                 <input class="form-control {{ $errors->has('latitude') ? 'is-invalid' : '' }}" type="number" name="latitude" id="latitude" value="{{ old('latitude', '') }}" step="0.00001" required>
@@ -95,6 +108,11 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.pharmacy.fields.longitude_helper') }}</span>
             </div>
+
+
+
+
+
             <div class="form-group">
                 <div class="form-check {{ $errors->has('is_special') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="is_special" value="0">
@@ -151,10 +169,15 @@
 </div>
 
 
-
 @endsection
 
 @section('scripts')
+    @parent
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+    <script src="/js/mapInput.js"></script>
+
+
 <script>
     Dropzone.options.logoDropzone = {
     url: '{{ route('admin.pharmacies.storeMedia') }}',
@@ -208,5 +231,6 @@
         return _results
     }
 }
+
 </script>
 @endsection

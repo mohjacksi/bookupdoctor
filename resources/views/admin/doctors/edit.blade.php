@@ -89,7 +89,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.doctor.fields.image_helper') }}</span>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label class="required" for="days">{{ trans('cruds.doctor.fields.days') }}</label>
                 @include('admin.doctors.partials.days')
                 @if($errors->has('days'))
@@ -98,7 +98,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.doctor.fields.days_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="stars">{{ trans('cruds.doctor.fields.stars') }}</label>
                 <input class="form-control {{ $errors->has('stars') ? 'is-invalid' : '' }}" type="number" name="stars" id="stars" value="{{ old('stars', $doctor->stars) }}" step="0.01" max="5">
@@ -144,6 +144,18 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.doctor.fields.expiration_date_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="address_address">البحث عن عنوان (لا يتم تخزينه)</label>
+                <input type="text" id="address-input" name="address_address" class="form-control map-input">
+                <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+            </div>
+            <div class="form-group">
+                <div id="address-map-container" style="width:100%;height:400px; ">
+                    <div style="width: 100%; height: 100%" id="address-map">
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label class="required" for="latitude">{{ trans('cruds.doctor.fields.latitude') }}</label>
@@ -193,6 +205,11 @@
 @endsection
 
 @section('scripts')
+@parent
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+<script src="/js/mapInput.js"></script>
+
 <script>
     Dropzone.options.imageDropzone = {
     url: '{{ route('admin.doctors.storeMedia') }}',
