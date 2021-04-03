@@ -1,5 +1,5 @@
 @if(isset($phone))
-    <a class="btn btn-success" href="https://wa.me/{{$phone}}">
+    <a class="btn btn-success" target="_blank" href="https://wa.me/{{$phone}}">
         مراسلة
     </a>
 @endif
