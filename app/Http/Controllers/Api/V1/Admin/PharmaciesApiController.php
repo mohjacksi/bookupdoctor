@@ -33,7 +33,7 @@ class PharmaciesApiController extends Controller
         $pharmacies = $pharmacies->paginate(10);
         foreach ($pharmacies as $pharmacy)
             if ($pharmacy->logo != null)
-                $pharmacy->image_url = $pharmacy->logo->thumbnail;
+                $pharmacy->image_url = $pharmacy->logo->url;
 
         return new PharmacyResource($pharmacies);
     }

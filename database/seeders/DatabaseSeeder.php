@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
             CitiesTableSeeder::class,
             AppointmentsStatusesTableSeeder::class,
             SettingsTableSeeder::class,
-            PharmacyTableSeeder::class,
-            DoctorsTableSeeder::class,
-            DoctorSpecialtyTableSeeder::class,
+            // PharmacyTableSeeder::class,
+            // DoctorsTableSeeder::class,
+            // DoctorSpecialtyTableSeeder::class,
             DayDoctorTableSeeder::class,
         ]);
     }

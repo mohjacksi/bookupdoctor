@@ -38,7 +38,7 @@ class DoctorsApiController extends Controller
         $doctors = $doctors->paginate(10);
         foreach ($doctors as $doctor)
             if ($doctor->image != null)
-                $doctor->image_url = $doctor->image->thumbnail;
+                $doctor->image_url = $doctor->image->url;
         //$doctors = $doctors->makeHidden(['media','image']);
         return new DoctorResource($doctors);
     }

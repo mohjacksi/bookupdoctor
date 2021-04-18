@@ -23,7 +23,7 @@ class SpecialtiesApiController extends Controller
         // $specialties = Specialty::withCount('specialtiesDoctors')->get();
         foreach($specialties as $i => $specialty){
             if ($specialty->icon != null)
-                $specialty->image_url = $specialty->icon->thumbnail;
+                $specialty->image_url = $specialty->icon->url;
             // if($specialty->specialties_doctors_count == 0)
             //     $specialties[$i] = null;
         }
