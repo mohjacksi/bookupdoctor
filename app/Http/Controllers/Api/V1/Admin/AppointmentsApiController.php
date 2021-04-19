@@ -31,6 +31,9 @@ class AppointmentsApiController extends Controller
         $request['status_id'] = 1;
         $appointment = Appointment::create($request->all());
 
+
+        // Uploading file - start
+        /*
         $path = storage_path('tmp/uploads');
         try {
             if (!file_exists($path)) {
@@ -53,7 +56,8 @@ class AppointmentsApiController extends Controller
 
         if ($request->input('voice', false)) {
             $appointment->addMedia(storage_path('tmp/uploads/' . $request->input('voice')))->toMediaCollection('voice');
-        }
+        } */
+        // Uploading file - end
 
         return (new AppointmentResource($appointment))
             ->response()

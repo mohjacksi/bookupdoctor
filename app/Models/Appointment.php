@@ -43,6 +43,9 @@ class Appointment extends Model implements HasMedia
         'status_id',
         'reserved_date',
         'notes',
+        'user_city_id',
+        'doctor_city_id',
+        'doctor_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -87,5 +90,20 @@ class Appointment extends Model implements HasMedia
     public function getVoiceAttribute()
     {
         return $this->getMedia('voice')->last();
+    }
+
+    public function user_city()
+    {
+        return $this->belongsTo(City::class, 'user_city_id');
+    }
+
+    public function doctor_city()
+    {
+        return $this->belongsTo(City::class, 'doctor_city_id');
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class, 'doctor_id');
     }
 }

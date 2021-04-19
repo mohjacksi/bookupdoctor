@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             // PharmacyTableSeeder::class,
             // DoctorsTableSeeder::class,
             // DoctorSpecialtyTableSeeder::class,
-            DayDoctorTableSeeder::class,
+            // DayDoctorTableSeeder::class,
         ]);
     }
 }
