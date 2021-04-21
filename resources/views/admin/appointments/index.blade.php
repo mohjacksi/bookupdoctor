@@ -25,7 +25,19 @@
                         {{ trans('cruds.appointment.fields.id') }}
                     </th>
                     <th>
+                        {{ trans('cruds.appointment.fields.doctor') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.appointment.fields.doctor_city') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.appointment.fields.user_city') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.appointment.fields.name') }}
+                    </th>
+                    <th>
+                        &nbsp;
                     </th>
                     <th>
                         {{ trans('cruds.appointment.fields.phone_number') }}
@@ -42,15 +54,36 @@
                     <th>
                         {{ trans('cruds.appointment.fields.reserved_date') }}
                     </th>
-                    <th>
-                        &nbsp;
-                    </th>
                 </tr>
                 <tr>
                     <td>
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        {{-- <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($doctors as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select> --}}
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($cities as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($cities as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -135,13 +168,16 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
+{ data: 'doctor_name', name: 'doctor.name' },
+{ data: 'doctor_city_name', name: 'doctor_city.name' },
+{ data: 'user_city_name', name: 'user_city.name' },
 { data: 'name', name: 'name' },
+{ data: 'actions', name: '{{ trans('global.actions') }}' },
 { data: 'phone_number', name: 'phone_number' },
 { data: 'date', name: 'date' },
 { data: 'time', name: 'time' },
 { data: 'status_name', name: 'status.name' },
-{ data: 'reserved_date', name: 'reserved_date' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
+{ data: 'reserved_date', name: 'reserved_date' }
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
@@ -152,7 +188,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 let visibleColumnsIndexes = null;
 $('.datatable thead').on('input', '.search', function () {
       let strict = $(this).attr('strict') || false

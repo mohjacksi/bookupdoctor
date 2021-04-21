@@ -271,6 +271,13 @@ return [
             'deleted_at_helper'    => ' ',
             'voice'                => 'صوت',
             'voice_helper'         => ' ',
+            'user_city'            => 'مدينة المستخدم',
+            'user_city_helper'     => ' ',
+            'doctor_city'          => 'مدينة الطبيب',
+            'doctor_city_helper'   => ' ',
+            'doctor'               => 'الطبيب',
+            'doctor_helper'        => ' ',
+
         ],
     ],
     'portfolio'          => [

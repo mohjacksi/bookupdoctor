@@ -100,6 +100,48 @@
                 <span class="help-block">{{ trans('cruds.appointment.fields.voice_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="user_city_id">{{ trans('cruds.appointment.fields.user_city') }}</label>
+                <select class="form-control select2 {{ $errors->has('user_city') ? 'is-invalid' : '' }}" name="user_city_id" id="user_city_id">
+                    @foreach($user_cities as $id => $user_city)
+                        <option value="{{ $id }}" {{ old('user_city_id') == $id ? 'selected' : '' }}>{{ $user_city }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('user_city'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('user_city') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.appointment.fields.user_city_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="doctor_city_id">{{ trans('cruds.appointment.fields.doctor_city') }}</label>
+                <select class="form-control select2 {{ $errors->has('doctor_city') ? 'is-invalid' : '' }}" name="doctor_city_id" id="doctor_city_id">
+                    @foreach($doctor_cities as $id => $doctor_city)
+                        <option value="{{ $id }}" {{ old('doctor_city_id') == $id ? 'selected' : '' }}>{{ $doctor_city }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('doctor_city'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('doctor_city') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.appointment.fields.doctor_city_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="doctor_id">{{ trans('cruds.appointment.fields.doctor') }}</label>
+                <select class="form-control select2 {{ $errors->has('doctor') ? 'is-invalid' : '' }}" name="doctor_id" id="doctor_id">
+                    @foreach($doctors as $id => $doctor)
+                        <option value="{{ $id }}" {{ old('doctor_id') == $id ? 'selected' : '' }}>{{ $doctor }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('doctor'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('doctor') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.appointment.fields.doctor_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
@@ -124,7 +166,7 @@
               return new Promise(function(resolve, reject) {
                 // Init request
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/admin/appointments/ckmedia', true);
+                xhr.open('POST', '{{ route('admin.appointments.storeCKEditorImages') }}', true);
                 xhr.setRequestHeader('x-csrf-token', window._token);
                 xhr.setRequestHeader('Accept', 'application/json');
                 xhr.responseType = 'json';

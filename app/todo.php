@@ -8,6 +8,6 @@
 // TODO: API for settings [support number, about app] Done
 
 
-// TODO: Relationship between Apoinmtment and (Doctor & City)
+// TODO: Relationship between Apoinmtment and (Doctor & City) DONE
 // TODO: Show city in the main coulumn of appointment with doctor name + Contact Doctor BUTTON
-// TODO: make image larger
+// TODO: make image larger DONE

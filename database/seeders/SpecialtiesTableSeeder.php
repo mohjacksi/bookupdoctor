@@ -18,6 +18,7 @@ class SpecialtiesTableSeeder extends Seeder
             [
                 'id'             => 1,
                 'name'           => 'الصيدليات',
+                'name'           => 'الصيدليات',
             ],
             [
                 'id'             => 2,

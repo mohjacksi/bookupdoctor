@@ -91,6 +91,30 @@
                             @endif
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.appointment.fields.user_city') }}
+                        </th>
+                        <td>
+                            {{ $appointment->user_city->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.appointment.fields.doctor_city') }}
+                        </th>
+                        <td>
+                            {{ $appointment->doctor_city->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.appointment.fields.doctor') }}
+                        </th>
+                        <td>
+                            {{ $appointment->doctor->name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

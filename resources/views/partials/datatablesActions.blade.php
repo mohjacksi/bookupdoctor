@@ -1,6 +1,6 @@
 @if(isset($phone))
     <a class="btn btn-success" target="_blank" href="https://wa.me/{{$phone}}">
-        مراسلة
+        مراسلة الطبيب
     </a>
 @endif
 @can($viewGate)
