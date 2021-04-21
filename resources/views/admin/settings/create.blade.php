@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="value">{{ trans('cruds.setting.fields.value') }}</label>
-                <input class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" type="text" name="value" id="value" value="{{ old('value', '') }}" required>
+                <textarea class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" id="value" required>{{ old('value') }}</textarea>
                 @if($errors->has('value'))
                     <div class="invalid-feedback">
                         {{ $errors->first('value') }}
