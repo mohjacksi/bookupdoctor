@@ -20,6 +20,7 @@ class CitiesApiController extends Controller
         if(isset($for_appointment))
             return new CityResource(City::select(['id','name'])->get());//->where('name', 'not like', "%-%")->get());
         else
+        
             return new CityResource(City::select(['id','name'])->get());
     }
     
