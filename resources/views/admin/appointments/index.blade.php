@@ -172,7 +172,7 @@
 { data: 'doctor_city_name', name: 'doctor_city.name' },
 { data: 'user_city_name', name: 'user_city.name' },
 { data: 'name', name: 'name' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' },
+{ data: 'actions', name: '{{ trans('global.actions') }}' ,"searchable": false },
 { data: 'phone_number', name: 'phone_number' },
 { data: 'date', name: 'date' },
 { data: 'time', name: 'time' },
